@@ -6,9 +6,11 @@ export default class StudentService {
     }
 
     getAll = async () => {
-    //    Desarrollar logica
+        let courses = await coursesModel.find();
+        return courses.map(course=>course.toObject());
     }
     save = async (course) => {
-    //    Desarrollar logica
+        let result = await coursesModel.create(course);
+        return result;
     }
 }
