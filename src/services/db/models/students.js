@@ -3,7 +3,36 @@ import mongoose from 'mongoose';
 const collectionName = 'students';
 
 // Implementar SCHEMAS para el Model de Mongoose
+const stringTypeSchemaUniqueRequerid={
+    type: String,
+    unique: true,
+    required: true,
+};
 
+const stringTypeSchemaNonUniqueRequired = {
+    type: String,
+    required: true
+};
+
+   
+
+const studentSchema = new mongoose.Schema({
+    name: stringTypeSchemaNonUniqueRequired,
+    lastName: stringTypeSchemaNonUniqueRequired,
+    age: stringTypeSchemaNonUniqueRequired,
+    courses: {
+        type: [
+            {
+                course: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "courses"
+                }
+            }
+        ],
+        default:[]
+    }
+    
+});
 
 
 /**

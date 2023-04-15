@@ -18,7 +18,13 @@ router.get('/',async(req,res)=>{
 })
 
 router.post('/',async(req,res)=>{
-    // Resolver esta ruta POST
+    try {
+        let result = await studentService.save(req.body);
+        res.status(201).send(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({error:  error, message: "No se pudo guardar el estudiante."});
+    }
 })
 
 export default router;
